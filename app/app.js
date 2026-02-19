@@ -8,7 +8,6 @@ const state = {
 const routes = {
     principal: { x: 0, y: 0, path: "screens/principal" },
     form: { x: 1, y: 0, path: "screens/form" },
-    detalle: { x: 0, y: 1, path: "screens/detalle" },
     stats: { x: 1, y: 1, path: "screens/stats" }
 };
 
@@ -81,6 +80,5 @@ async function navigate(routeName, params = {}) {
 ensureSlots();
 await loadScreen("principal");
 await loadScreen("form");
-await loadScreen("detalle");
 await loadScreen("stats");
 navigate("principal");

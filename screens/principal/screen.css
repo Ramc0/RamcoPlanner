@@ -84,9 +84,23 @@ button:hover {
 }
 
 .card {
-  position: relative;
+  background: white;
+  padding: 15px;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: all 0.25s ease;
+  cursor: pointer;
+  border: 1px solid rgba(0,0,0,0.04);
 }
 
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+.card:active {
+  transform: scale(0.98);
+}
 .card.completed {
   opacity: 0.6;
   text-decoration: line-through;
@@ -101,8 +115,21 @@ button:hover {
 .card-actions button {
   flex: 1;
   font-size: 12px;
-  padding: 6px;
+  padding: 8px;
+  border-radius: 8px;
+  border: none;
+  transition: 0.2s ease;
+  cursor: pointer;
 }
+
+.card-actions button:hover {
+  background: #d1d5db;
+}
+
+.card-actions button:active {
+  transform: scale(0.95);
+}
+
 .search {
   width: 100%;
   padding: 10px;
@@ -178,4 +205,18 @@ button:hover {
 @keyframes fadeIn {
   from { opacity: 0; transform: scale(0.95); }
   to { opacity: 1; transform: scale(1); }
+}
+.card {
+  animation: fadeCard 0.25s ease;
+}
+
+@keyframes fadeCard {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
