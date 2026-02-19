@@ -1,19 +1,24 @@
 <div class="screen principal">
-  <header class="header">
-    <h1>Ramco Planner</h1>
-    <p class="subtitle">Organiza tus actividades</p>
-  </header>
+    <header class="header">
+        <h1>Ramco Planner</h1>
+        <p class="subtitle">Organiza tus actividades</p>
+    </header>
 
-  <div class="actions">
-    <button id="btn-new" class="primary">+ Nueva</button>
-    <button id="btn-stats" class="secondary">Estadísticas</button>
-  </div>
+    <div class="actions">
+        <button id="btn-new" class="primary">+ Nueva</button>
+        <button id="btn-stats" class="secondary">Estadísticas</button>
+    </div>
+    <input id="search" placeholder="Buscar actividad..." class="search">
+    <div class="filters">
+        <button data-filter="all" class="filter active">Todas</button>
+        <button data-filter="pending" class="filter">Pendientes</button>
+        <button data-filter="completed" class="filter">Completadas</button>
+    </div>
+    <select id="sort" class="sort">
+        <option value="newest">Más recientes</option>
+        <option value="oldest">Más antiguas</option>
+        <option value="priority">Por prioridad</option>
+    </select>
 
-  <div class="filters">
-    <button data-filter="all" class="filter active">Todas</button>
-    <button data-filter="pending" class="filter">Pendientes</button>
-    <button data-filter="completed" class="filter">Completadas</button>
-  </div>
-
-  <div id="activity-list" class="activity-list"></div>
+    <div id="activity-list" class="activity-list"></div>
 </div>
