@@ -1,0 +1,21 @@
+.principal h1 {
+    margin-bottom: 15px;
+}
+
+button {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    background: #10b981;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.card {
+    background: white;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
