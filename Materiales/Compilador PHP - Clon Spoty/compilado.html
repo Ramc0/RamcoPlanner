@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>TAMEify</title>
+  <style>
+    /* GLOBAL */
+    body {
+      margin: 0;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background: #121212;
+      color: white;
+    }
+
+    /* HEADER */
+    header {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    header button {
+      background: linear-gradient(135deg, #1DB954, #1ed760cc);
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 14px;
+      transition: all 0.3s;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    header button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    /* FAVORITES SECTION */
+    #favoritas {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 15px;
+    }
+
+    section article {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      background: #1e1e1e;
+      border-radius: 15px;
+      padding: 15px;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+    }
+
+    section article:hover {
+      background: #292929;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    section article img {
+      height: 50px;
+      width: 50px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    section article p {
+      font-weight: bold;
+      color: white;
+      font-size: 14px;
+      margin: 0;
+    }
+
+    /* MAIN SCREEN */
+    #pantalla_inicio {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      background: #121212;
+      min-height: 100vh;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    /* PLAYLIST SCREEN */
+    #pantalla_lista {
+      display: none;
+      background: #121212;
+      color: white;
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    #pantalla_lista img {
+      width: 100%;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
+    }
+
+    .cancion {
+      display: flex;
+      gap: 10px;
+      padding: 12px;
+      background: #1e1e1e;
+      margin-bottom: 12px;
+      border-radius: 12px;
+      align-items: center;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s;
+    }
+
+    .cancion:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+      background: #292929;
+    }
+
+    .cancion .datostexto h4 {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .cancion .datostexto p {
+      margin: 0;
+      font-size: 12px;
+      color: #b3b3b3;
+    }
+
+    /* REPRODUCTOR */
+    #reproductor {
+      width: 91%;
+      background: linear-gradient(135deg, #282828, #3a3a3a);
+      height: 70px;
+      border-radius: 15px;
+      padding: 10px;
+      position: fixed;
+      bottom: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      color: white;
+      transition: all 0.3s;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    #reproductor img {
+      height: 50px;
+      width: 50px;
+      border-radius: 10px;
+      object-fit: cover;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+    }
+
+    #reproductor h3 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .pantallacompleta {
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+    /* FOOTER */
+    footer {
+      display: flex;
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+      left: 0;
+      background: #181818;
+      border-top: 1px solid #282828;
+      box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    footer button {
+      width: 100%;
+      border: none;
+      background: none;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 5px 0;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    footer button:hover {
+      color: #1DB954;
+      transform: translateY(-3px);
+    }
+
+    footer button .emoji {
+      font-size: 26px;
+      margin-bottom: 2px;
+    }
+
+    footer button p {
+      margin: 0;
+      font-size: 12px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="pantallas">
+    <div id="pantalla_inicio">
+      <header>
+        <button>R</button>
+        <button>Todos</button>
+        <button>Música</button>
+        <button>Podcasts</button>
+      </header>
+      <section id="favoritas"></section>
+    </div>
+
+    <div id="pantalla_lista">
+      <img src="" onerror="this.onerror=null; this.src='img/placeholder.png';" alt="Miniatura de la lista">
+      <h3>Titulo de la lista</h3>
+      <div id="contienecanciones"></div>
+    </div>
+
+    <section id="reproductor">
+      <img src="Ramon.jpg" alt="Artista">
+      <h3>Artista</h3>
+      <audio src="RenaiCirculation.mp3" controls></audio>
+    </section>
+
+    <footer>
+      <button>
+        <div class="emoji">🏠</div>
+        <p>Inicio</p>
+      </button>
+      <button>
+        <div class="emoji">🔍</div>
+        <p>Buscar</p>
+      </button>
+      <button>
+        <div class="emoji">📚</div>
+        <p>Tu biblioteca</p>
+      </button>
+      <button>
+        <div class="emoji">➕</div>
+        <p>Crear</p>
+      </button>
+    </footer>
+
+    <div id="templates">
+      <template id="elemento_lista">
+        <article>
+          <img src="..." onerror="this.onerror=null; this.src='img/placeholder.png';" alt="Miniatura de la lista">
+          <p>...</p>
+        </article>
+      </template>
+      <template id="plantilla_cancion">
+        <article class="cancion">
+          <div class="datostexto">
+            <h4>Titulo de la cancion</h4>
+            <p>Titulo del disco</p>
+          </div>
+          <p>...</p>
+        </article>
+      </template>
+    </div>
+  </div>
+
+  <script>
+    // Cargar favoritos
+    let contenedor = document.querySelector("#favoritas")
+    fetch("api/favoritos.json")
+      .then(respuesta => respuesta.json())
+      .then(datos => {
+        datos.favorites.forEach(dato => {
+          let plantilla = document.querySelector("#elemento_lista")
+          let instancia = plantilla.content.cloneNode(true)
+          let articulo = instancia.querySelector("article")
+          articulo.querySelector("p").textContent = dato.artist
+          articulo.querySelector("img").setAttribute("src", dato.image)
+          contenedor.appendChild(instancia)
+          articulo.onclick = function () {
+            document.querySelector("#pantalla_inicio").style.display = "none"
+            document.querySelector("#pantalla_lista").style.display = "block"
+          }
+        })
+      })
+
+    // Cargar canciones
+    let contenedor_canciones = document.querySelector("#contienecanciones")
+    fetch("api/lista.json")
+      .then(respuesta => respuesta.json())
+      .then(datos => {
+        datos.forEach(dato => {
+          let plantilla = document.querySelector("#plantilla_cancion")
+          let clon = plantilla.content.cloneNode(true)
+          clon.querySelector("h4").textContent = dato.song
+          clon.querySelector("p").textContent = dato.album
+          contenedor_canciones.appendChild(clon)
+        })
+      })
+
+    // Reproductor pantalla completa
+    let reproductor = document.querySelector("#reproductor");
+    reproductor.onclick = function () {
+      this.classList.add("pantallacompleta")
+    }
+
+    // Botón de Inicio en el footer
+    let botonInicio = document.querySelector("footer button:first-child");
+    botonInicio.onclick = function () {
+      document.querySelector("#pantalla_inicio").style.display = "flex";
+      document.querySelector("#pantalla_lista").style.display = "none";
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+  </script>
+</body>
+
+</html>

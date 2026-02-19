@@ -1,0 +1,36 @@
+{
+  "favorites": [
+    {
+      "artist": "Arde Bogotá",
+      "image": "https://example.com/images/arde_bogota.jpg"
+    },
+    {
+      "artist": "IZAL",
+      "image": "https://example.com/images/izal.jpg"
+    },
+    {
+      "artist": "Vetusta Morla",
+      "image": "https://example.com/images/vetusta_morla.jpg"
+    },
+    {
+      "artist": "Leiva",
+      "image": "https://example.com/images/leiva.jpg"
+    },
+    {
+      "artist": "Extremoduro",
+      "image": "https://example.com/images/extremoduro.jpg"
+    },
+    {
+      "artist": "Lori Meyers",
+      "image": "https://example.com/images/lory_meyers.jpg"
+    },
+    {
+      "artist": "Supersubmarina",
+      "image": "https://example.com/images/aupersubmarina.jpg"
+    },
+    {
+      "artist": "Viva Suecia",
+      "image": "https://example.com/images/viva_suecia.jpg"
+    }
+  ]
+}
