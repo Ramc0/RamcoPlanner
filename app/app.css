@@ -40,4 +40,5 @@ body {
 .screen {
     padding: 20px;
     min-height: 100%;
+    position: relative;
 }

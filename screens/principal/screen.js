@@ -105,7 +105,7 @@ function render() {
 
     list.innerHTML = activities
         .map(a => `
-        <div class="card ${a.completed ? "completed" : ""}">
+        <div class="card ${a.completed ? "completed" : ""}"data-view="${a.id}">
             <div class="card-header">
                 <h3>${a.title}</h3>
                 <span class="badge ${(a.priority || "Media").toLowerCase()}">
@@ -124,6 +124,31 @@ function render() {
     `).join("");
 
     attachEvents();
+}
+function openModal(activity) {
+    const modal = rootRef.querySelector("#modal");
+    const body = rootRef.querySelector("#modal-body");
+
+    body.innerHTML = `
+    <h2>${activity.title}</h2>
+    <p><strong>Descripción:</strong> ${activity.description || "Sin descripción"}</p>
+    <p><strong>Categoría:</strong> ${activity.category}</p>
+    <p><strong>Prioridad:</strong> ${activity.priority}</p>
+    <p><strong>Estado:</strong> ${activity.completed ? "Completada" : "Pendiente"}</p>
+    <p><strong>Creada:</strong> ${new Date(activity.createdAt).toLocaleString()}</p>
+  `;
+
+    modal.classList.remove("hidden");
+
+    rootRef.querySelector("#close-modal").onclick = () => {
+        modal.classList.add("hidden");
+    };
+
+    modal.onclick = (e) => {
+        if (e.target === modal) {
+            modal.classList.add("hidden");
+        }
+    };
 }
 
 function attachEvents() {
@@ -157,6 +182,16 @@ function attachEvents() {
             stateRef.activities = stateRef.activities.filter(a => a.id !== id);
             save();
             render();
+        });
+    });
+    // VER DETALLE
+    rootRef.querySelectorAll("[data-view]").forEach(card => {
+        card.addEventListener("click", (e) => {
+            if (e.target.tagName === "BUTTON") return;
+
+            const id = Number(card.dataset.view);
+            const activity = stateRef.activities.find(a => a.id === id);
+            openModal(activity);
         });
     });
 }
