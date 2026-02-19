@@ -1,28 +1,19 @@
-let rootRef;
-
-export function init({ root, navigate, state }) {
-  rootRef = root;
-
-  root.querySelector("#back")
-    .addEventListener("click", () => navigate("principal"));
-
-  render(state);
-}
-
-export function onShow({ state }) {
-  render(state);
-}
-
 function render(state) {
-  const total = state.activities.length;
-  const completed = state.activities.filter(a => a.completed).length;
-  const pending = total - completed;
+  const list = rootRef.querySelector("#activity-list");
 
-  rootRef.querySelector("#stats-content").innerHTML = `
-    <div class="stats-box">
-      <p>Total: ${total}</p>
-      <p>Completadas: ${completed}</p>
-      <p>Pendientes: ${pending}</p>
+  if (!state.activities.length) {
+    list.innerHTML = `
+      <div class="card">
+        <p>No tienes actividades todavía.</p>
+      </div>
+    `;
+    return;
+  }
+
+  list.innerHTML = state.activities.map(a => `
+    <div class="card">
+      <h3>${a.title}</h3>
+      <p>${a.description}</p>
     </div>
-  `;
+  `).join("");
 }

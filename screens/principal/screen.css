@@ -1,21 +1,105 @@
-.principal h1 {
-    margin-bottom: 15px;
+.principal {
+  background: #f9fafb;
+}
+
+.header h1 {
+  font-size: 24px;
+  color: #1f2937;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 20px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
 button {
-    padding: 10px;
-    margin-bottom: 10px;
-    border: none;
-    background: #10b981;
-    color: white;
-    border-radius: 8px;
-    cursor: pointer;
+  flex: 1;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s ease;
+}
+
+button:hover {
+  transform: scale(1.03);
+}
+
+.primary {
+  background: #10b981;
+  color: white;
+}
+
+.secondary {
+  background: #1f2937;
+  color: white;
+}
+
+.activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .card {
-    background: white;
-    padding: 15px;
-    margin-bottom: 10px;
-    border-radius: 10px;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.card h3 {
+  font-size: 16px;
+  margin-bottom: 5px;
+  color: #111827;
+}
+
+.card p {
+  font-size: 14px;
+  color: #6b7280;
+}
+.filters {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.filter {
+  flex: 1;
+  background: #e5e7eb;
+  color: #111827;
+}
+
+.filter.active {
+  background: #10b981;
+  color: white;
+}
+
+.card {
+  position: relative;
+}
+
+.card.completed {
+  opacity: 0.6;
+  text-decoration: line-through;
+}
+
+.card-actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.card-actions button {
+  flex: 1;
+  font-size: 12px;
+  padding: 6px;
 }

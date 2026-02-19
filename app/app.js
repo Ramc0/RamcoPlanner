@@ -1,7 +1,8 @@
 const grid = document.getElementById("grid");
 
 const state = {
-    activities: []
+    activities: [],
+    filter: "all"
 };
 
 const routes = {
